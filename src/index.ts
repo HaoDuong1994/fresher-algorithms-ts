@@ -35,11 +35,16 @@ const findAllIndexRecursive = <T>(
   array: T[],
   value: T,
   index: number = 0,
-  currentArrray: number[] = []
+  currentArray: number[] = []
 ): number[] | undefined => {
-  if (index > array.length && currentArrray.length == 0) return undefined;
+  if (index >= array.length && currentArray.length == 0) return undefined;
+  if (index >= array.length) return currentArray;
   if (array[index] == value) {
-    currentArrray.push(index);
-    return findAllIndexRecursive(array, value, index + 1, currentArrray);
+    currentArray.push(index);
+    console.log(currentArray);
+    return findAllIndexRecursive(array, value, index + 1, currentArray);
   }
 };
+
+const value = findAllIndexRecursive(["banana", "banana"], "banana");
+console.log("here >>>", value);
