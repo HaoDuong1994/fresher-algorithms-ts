@@ -19,7 +19,6 @@ const findIndexRecursive = <T>(
 };
 
 //2) find All index of value
-
 const findAllIndex = <T>(array: T[], value: T): number[] | undefined => {
   let result: number[] = [];
   for (let i = 0; i <= array.length; i++) {
@@ -47,4 +46,43 @@ const findAllIndexRecursive = <T>(
 };
 
 const value = findAllIndexRecursive(["banana", "banana"], "banana");
-console.log("here >>>", value);
+
+//Binary Search
+const binarySearchMidElement = <T>(array: T[]) => {
+  const low = 0;
+  const high = array.length - 1;
+  const mid = Math.floor((high - low) / 2);
+  return array[mid];
+};
+// Bubble Sort
+const countBubbleSort = (array: number[]) => {
+  let n = array.length;
+  let count = 0;
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - 1 - i; j++) {
+      let temp;
+      let swap = false;
+      if (array[j] > array[j + 1]) {
+        temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
+        swap = true;
+      }
+      if (swap) {
+        count++;
+      }
+    }
+  }
+  return count;
+};
+//00 01 10 11                000 001 010 011 100 101 1110 111
+//Generate Binary
+const generateBinary = (n: number): void => {
+  const length = 1 << n;
+  console.log(length);
+  for (let i = 0; i < length; i++) {
+    console.log("oooooooooo", i.toString(2));
+    console.log(">>>>", i.toString(2).padStart(n, "0"));
+  }
+};
+generateBinary(3);
