@@ -75,14 +75,67 @@ const countBubbleSort = (array: number[]) => {
   }
   return count;
 };
-//00 01 10 11                000 001 010 011 100 101 1110 111
-//Generate Binary
+//Generate Binary using backtracking
 const generateBinary = (n: number): void => {
   const length = 1 << n;
   console.log(length);
   for (let i = 0; i < length; i++) {
-    console.log("oooooooooo", i.toString(2));
     console.log(">>>>", i.toString(2).padStart(n, "0"));
   }
 };
-generateBinary(3);
+
+const generateBinaryRecursive = (n: number, current: string = "") => {
+  if (current.length === n) {
+    console.log(current);
+    return;
+  }
+  generateBinaryRecursive(n, current + "0");
+  generateBinaryRecursive(n, current + "1");
+};
+
+const binaryWithout11 = (n: number, current: string = "") => {
+  if (current.length === n) {
+    console.log("without 11 ", current);
+    return;
+  }
+  const lastChar = current[current.length - 1];
+  if (lastChar !== "1") {
+    binaryWithout11(n, current + "1");
+  }
+  binaryWithout11(n, current + "0");
+};
+
+binaryWithout11(3);
+
+//Promise
+
+const Sleep = (second: number): Promise<string> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(`sleep after ${second} second`);
+    }, second * 1000);
+  });
+};
+
+const doSomething = async (
+  action: string,
+  timeSleep: number
+): Promise<void> => {
+  await Sleep(timeSleep);
+  console.log(action);
+};
+doSomething("play game", 3);
+
+//Array Reduce Transformation
+const array1 = [1, 2, 3];
+const myReduce = (array: number[], initial: number): number => {
+  if (array.length === 0) return initial;
+  console.log("initial value >>", initial);
+  for (let i = 0; i < array.length; i++) {
+    initial += array[i];
+  }
+  return initial;
+};
+
+const value1 = myReduce(array1, 3);
+console.log(value1);
