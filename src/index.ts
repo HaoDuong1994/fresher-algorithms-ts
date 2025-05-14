@@ -152,5 +152,29 @@ const composeFn = fn([
     return x * x;
   },
 ]);
-const valueCompose = composeFn(4);
-console.log(valueCompose);
+
+//Fibonacci with recursive
+const myFibonacci = (n: number, a = 0, b = 1, index = 0): void => {
+  if (index >= n) return;
+  console.log(a);
+  myFibonacci(n, b, a + b, index + 1);
+};
+myFibonacci(10);
+
+//Print 1 to N by Recursive
+
+const myPrint = (n: number, index = 0, value = 1): void => {
+  if (index >= n) {
+    return;
+  }
+  console.log(value);
+  myPrint(n, index + 1, value + 1);
+};
+myPrint(100);
+
+const printFromNto1 = (n: number, index = n, value = index): void => {
+  if (index <= 1) return;
+  console.log(value);
+  printFromNto1(n, index - 1, value - 1);
+};
+printFromNto1(30);
