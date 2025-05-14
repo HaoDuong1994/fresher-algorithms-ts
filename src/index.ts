@@ -40,12 +40,9 @@ const findAllIndexRecursive = <T>(
   if (index >= array.length) return currentArray;
   if (array[index] == value) {
     currentArray.push(index);
-    console.log(currentArray);
     return findAllIndexRecursive(array, value, index + 1, currentArray);
   }
 };
-
-const value = findAllIndexRecursive(["banana", "banana"], "banana");
 
 //Binary Search
 const binarySearchMidElement = <T>(array: T[]) => {
@@ -108,7 +105,6 @@ const binaryWithout11 = (n: number, current: string = "") => {
 binaryWithout11(3);
 
 //Promise
-
 const Sleep = (second: number): Promise<string> => {
   return new Promise((res, rej) => {
     setTimeout(() => {
@@ -136,6 +132,25 @@ const myReduce = (array: number[], initial: number): number => {
   }
   return initial;
 };
+//Compose functionn
 
-const value1 = myReduce(array1, 3);
-console.log(value1);
+const fn = (arrayFn: ((x: number) => number)[]): ((x: number) => number) => {
+  return (x) => {
+    let initialValue: number = x;
+    for (let i = arrayFn.length - 1; i >= 0; i--) {
+      initialValue = arrayFn[i](initialValue);
+    }
+    return initialValue;
+  };
+};
+
+const composeFn = fn([
+  (x) => {
+    return x + 1;
+  },
+  (x) => {
+    return x * x;
+  },
+]);
+const valueCompose = composeFn(4);
+console.log(valueCompose);
