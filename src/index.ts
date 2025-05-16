@@ -178,3 +178,8 @@ const printFromNto1 = (n: number, index = n, value = index): void => {
   printFromNto1(n, index - 1, value - 1);
 };
 printFromNto1(30);
+
+const array123 = [1, 2, 3, 5];
+console.log("hello hello");
+console.log("hello");
+console.log("aaaaaaaaaaaaa");
